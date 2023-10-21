@@ -57,3 +57,72 @@ puts dolar.to_euro
 
 puts dolar
 p dolar
+
+# mixing in modules
+
+module Flyable
+  def fly
+    "I'm flying"
+  end
+end
+
+module Swimmable
+  def swin
+    "I'm swimming"
+  end
+end
+
+
+class Bird
+  include Flyable
+end
+
+class Fish
+  include Swimmable
+end
+
+class Duck < Bird
+  include Swimmable
+end
+
+class Penguin < Bird
+  include Swimmable
+end
+
+class Seaplane
+  include Flyable
+  include Swimmable # ruby will search in the last module mixed
+end
+
+peny = Penguin.new
+puts peny.swin
+
+# inheritance
+
+puts Penguin.ancestors
+puts "----- Division -----"
+puts Seaplane.ancestors
+
+
+#namespaces
+
+module Mammal
+  class Dog
+    def speak(sound)
+      p "#{sound}"
+    end
+  end
+
+  class Cat
+    def say_name(name)
+      p "#{name}"
+    end
+  end
+end
+
+
+dog = Mammal::Dog.new
+dog.speak("Guau")
+# dog.say_name("firulais") # error
+
+# method access control
